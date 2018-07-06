@@ -153,7 +153,7 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  background: url('../assets/img/AodaCat.jpg');
+  background: url('../assets/img/AodaCat.png') no-repeat center center;
   background-size: 100%;
   opacity: .8;
     overflow: hidden;
