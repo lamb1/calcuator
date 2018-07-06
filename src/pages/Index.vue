@@ -1,40 +1,38 @@
 <template>
-    <div>
-        <div class="calculator">
-            <div class="whiteboard">
-                <div class="data">
-                    <p v-for="item in data">{{item}}</p>
-                </div>
-                <div class="operater">
-                    <p v-for="item in operater">{{item}}</p>
-                </div>
-                
-            </div>
-            <div class="bottom">
-                <div class="operator">
-                    <ul>
-                        <li @click="checkNum('c')" :class="{'on' : active=='c'}">c</li>
-                        <li @click="checkNum('÷')" :class="{'on' : active=='÷'}">÷</li>
-                        <li @click="checkNum('×')" :class="{'on' : active=='×'}">×</li>
-                    </ul>    
-                </div>
-                <div class="operator2">
-                    <ul>
-                        <li @click="checkNum('delete')" :class="{'on' : active=='delete'}" class="delete"></li>
-                        <li @click="checkNum('+')" :class="{'on' : active=='+'}">＋</li>
-                        <li @click="checkNum('-')" :class="{'on' : active=='-'}">－</li>
-                        <li @click="checkNum('=')" :class="{'on' : active=='='}">＝</li>
-                    </ul>
-                </div>
-                <div class="num">
-                    <ul>
-                        <li v-for="item in num" @click="checkNum(item)" :class="{'on' : active==item}">{{item}}</li>
-                    </ul>
-                </div>
-            </div>
-            
-        </div>
+  <div class="calculator">
+    <div class="whiteboard">
+      <div class="data">
+        <p v-for="item in data">{{item}}</p>
+      </div>
+      <div class="operater">
+        <p v-for="item in operater">{{item}}</p>
+      </div>
+
     </div>
+    <div class="bottom">
+      <div class="operator">
+        <ul>
+          <li @click="checkNum('c')" :class="{'on' : active=='c'}">c</li>
+          <li @click="checkNum('÷')" :class="{'on' : active=='÷'}">÷</li>
+          <li @click="checkNum('×')" :class="{'on' : active=='×'}">×</li>
+        </ul>
+      </div>
+      <div class="operator2">
+        <ul>
+          <li @click="checkNum('delete')" :class="{'on' : active=='delete'}" class="delete"></li>
+          <li @click="checkNum('+')" :class="{'on' : active=='+'}">＋</li>
+          <li @click="checkNum('-')" :class="{'on' : active=='-'}">－</li>
+          <li @click="checkNum('=')" :class="{'on' : active=='='}">＝</li>
+        </ul>
+      </div>
+      <div class="num">
+        <ul>
+          <li v-for="item in num" @click="checkNum(item)" :class="{'on' : active==item}">{{item}}</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
 </template>
 <script>
   var map
@@ -47,15 +45,15 @@ export default {
             active: null,
             data: [''],
             operater:[]
-            
+
         }
     },
     components:{
 
     },
-    
+
     computed:{
-        
+
     },
     mounted: function () {
         for(var i=1;i <= 9;i++){
@@ -66,7 +64,7 @@ export default {
         this.num.push(".");
     },
     methods: {
-      
+
       checkNum: function(i){
           var _this = this;
           _this.active = i;
@@ -97,7 +95,7 @@ export default {
             }
             _this.data[_this.data.length] = "";
             break;
-            
+
             case "÷":
             if(_this.data[_this.data.length-1]==""){
                  _this.operater[_this.operater.length-1] = "÷";
@@ -106,7 +104,7 @@ export default {
             }
             _this.data[_this.data.length] = "";
             break;
-             
+
             case "×":
             if(_this.data[_this.data.length-1]==""){
                  _this.operater[_this.operater.length-1] = "×";
@@ -125,20 +123,20 @@ export default {
             _this.data = [''];
             _this.operater = [];
             break;
-            
+
             case "%":
-            
+
             break;
-            
+
             default:
             if(_this.data[_this.data.length-1]==undefined){
                 _this.data[_this.data.length-1] = '';
             }
             _this.data[_this.data.length-1] += String(i);
             break;
-            
+
           }
-          
+
           setTimeout(function(){
               _this.active = null;
           },150)
@@ -152,6 +150,12 @@ export default {
 <style>
 
 .calculator{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url('../assets/img/AodaCat.jpg');
+  background-size: 100%;
+  opacity: .8;
     overflow: hidden;
     color: #ffffff;
     text-shadow: 0px 0px 5px #323233;
