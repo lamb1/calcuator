@@ -2,8 +2,13 @@
     <div>
         <div class="calculator">
             <div class="whiteboard">
-                <p class="data">{{data}}</p>
-                <p class="operater">{{operater}}</p>
+                <div class="data">
+                    <p v-for="item in data">{{item}}</p>
+                </div>
+                <div class="operater">
+                    <p v-for="item in operater">{{item}}</p>
+                </div>
+                
             </div>
             <div class="bottom">
                 <div class="operator">
@@ -40,8 +45,8 @@ export default {
         return {
             num: [],
             active: null,
-            data: '',
-            operater:''
+            data: [''],
+            operater:[]
             
         }
     },
@@ -65,15 +70,73 @@ export default {
       checkNum: function(i){
           var _this = this;
           _this.active = i;
-          if(i=="delete"){
-            _this.data = _this.data.substr(0, _this.data.length-1);
-          }else if(i=="-"){
-            _this.operater = "-";
-          }else if(i=="c"){
-            _this.data = "";
-            _this.operater = "";
-          }else{
-            _this.data += i;
+          switch(i){
+
+            case "delete":
+            _this.data[_this.data.length-1] = _this.data[_this.data.length-1].substr(0, _this.data[_this.data.length-1].length - 1);
+            break;
+
+            case "-":
+            if(_this.data[_this.data.length-1]==""){
+                 _this.operater[_this.operater.length-1] = "－";
+            }else{
+                 _this.operater[_this.operater.length] = "－";
+            }
+             _this.data[_this.data.length] = "";
+            break;
+
+            case "+":
+            if(_this.data[_this.data.length-1]==""){
+                console.log(_this.operater)
+                console.log(_this.operater.length)
+                 _this.operater[_this.operater.length-1] = "＋";
+            }else{
+                console.log(_this.operater.length)
+                 _this.operater[_this.operater.length] = "＋";
+                console.log(_this.operater)
+            }
+            _this.data[_this.data.length] = "";
+            break;
+            
+            case "÷":
+            if(_this.data[_this.data.length-1]==""){
+                 _this.operater[_this.operater.length-1] = "÷";
+            }else{
+                 _this.operater[_this.operater.length] = "÷";
+            }
+            _this.data[_this.data.length] = "";
+            break;
+             
+            case "×":
+            if(_this.data[_this.data.length-1]==""){
+                 _this.operater[_this.operater.length-1] = "×";
+            }else{
+                 _this.operater[_this.operater.length] = "×";
+            }
+            _this.data[_this.data.length] = "";
+            break;
+
+            case "=":
+             _this.operater = "";
+            _this.data[_this.data.length] = "";
+            break;
+
+            case "c":
+            _this.data = [''];
+            _this.operater = [];
+            break;
+            
+            case "%":
+            
+            break;
+            
+            default:
+            if(_this.data[_this.data.length-1]==undefined){
+                _this.data[_this.data.length-1] = '';
+            }
+            _this.data[_this.data.length-1] += String(i);
+            break;
+            
           }
           
           setTimeout(function(){
@@ -98,9 +161,14 @@ export default {
     position: absolute;
     bottom: 0
 }
+.data{
+    float: right;
+}
 .operater{
     text-align: left;
     padding: 5px;
+    float: left;
+    margin-top: 16px;
 }
 .operator2{
     float: right;
