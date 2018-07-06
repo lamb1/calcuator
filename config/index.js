@@ -50,7 +50,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: 'https://lamb1.github.io/calcuator/dist/',
+    assetsPublicPath: './../../',
 
     /**
      * Source Maps
