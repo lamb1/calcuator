@@ -231,7 +231,7 @@ export default {
     border-right: 1px solid #c1c1c1;
 }
 li.on{
-    background: rgba(246, 245, 245,.2)
+    background: rgba(246, 245, 245,.5)
 }
 .delete{
     background: url('../assets/img/delete.png') no-repeat center center;
